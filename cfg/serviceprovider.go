@@ -1,5 +1,11 @@
 package cfg
 
+const (
+	Options,
+	Text,
+	Password
+)
+
 type IServiceField struct {
 	Name		string	`json:"Name"`
 	Description	string	`json:"Description"`
