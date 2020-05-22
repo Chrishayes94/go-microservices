@@ -4,14 +4,14 @@ import (
 	"github.com/gorilla/mux"
 )
 
-func New(serverAddress string, handler handlers.BaseHandler) (s Service) {
+func New(serverAddress string, handler BaseHandler) (s Service) {
 	s = Service{handler: handler, ServerAddress: serverAddress}
 	return s
 }
 
 type Service struct {
 	ServerAddress		string
-	handler				handlers.BaseHandler
+	handler				BaseHandler
 }
 
 func (s *Service) New() (router *mux.Router) {
