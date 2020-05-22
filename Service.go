@@ -2,7 +2,6 @@ package main
 
 import (
 	"github.com/gorilla/mux"
-	"go-microservices/handlers"
 )
 
 func New(serverAddress string, handler handlers.BaseHandler) (s Service) {
