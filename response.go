@@ -1,4 +1,4 @@
-package main
+package base
 
 type Response struct {
 	TrackingNumber			string	`json:"TrackingNumber"`
