@@ -12,7 +12,7 @@ type IServiceField struct {
 	Name		string	`json:"Name"`
 	Description	string	`json:"Description"`
 	IsRequired	bool	`json:"IsRequired"`
-	FieldType	string	`json:"FieldType"`
+	FieldType	FieldType	`json:"FieldType"`
 }
 
 type IServiceOption struct {
