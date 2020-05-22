@@ -39,5 +39,5 @@ type IServiceOptionField struct {
 
 type IServiceProvider struct {
 	Name		string			`json:"Name"`
-	Options		[]IServiceField	`json:"Options"`
+	Options		[]interface{}	`json:"Options"`
 }
