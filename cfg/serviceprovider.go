@@ -1,15 +1,18 @@
 package cfg
 
+type FieldType string
+
 const (
-	Options,
-	Text,
-	Password
+	Options FieldType = "Options"
+	Text FieldType = "Text"
+	Password FieldType = "Password"
 )
 
 type IServiceField struct {
 	Name		string	`json:"Name"`
 	Description	string	`json:"Description"`
 	IsRequired	bool	`json:"IsRequired"`
+	FieldType	string	`json:"FieldType"`
 }
 
 type IServiceOption struct {
