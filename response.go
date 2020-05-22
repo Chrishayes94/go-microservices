@@ -1,4 +1,4 @@
-package models
+package main
 
 type Response struct {
 	TrackingNumber			string	`json:"TrackingNumber"`
