@@ -1,6 +1,8 @@
 package registration
 
 import (
+	"log"
+	"net"
 	"time"
 	consul "github.com/hashicorp/consul/api"
 )
@@ -17,7 +19,7 @@ func New(integration string, ttl time.Duration, port int) (*Registration, error)
 		TTL: ttl,
 	}
 	config := consul.DefaultConfig()
-	config.Address = "172.17.0.3:8500"
+	config.Address = "172.17.0.2:8500"
 
 	c, err := consul.NewClient(config)
 	if err != nil {
@@ -29,6 +31,7 @@ func New(integration string, ttl time.Duration, port int) (*Registration, error)
 		Tags:              []string{"development", "api"},
 		Port:              port,
 		Check: &consul.AgentServiceCheck{
+			HTTP: getIp().String() + ":8080/alive",
 			TTL: s.TTL.String(),
 		},
 	}
@@ -37,4 +40,15 @@ func New(integration string, ttl time.Duration, port int) (*Registration, error)
 	}
 	//TODO check health of this node - go s.UpdateTTL(s.Check)
 	return s, nil
+}
+
+func getIp() net.IP {
+	conn, err := net.Dial("udp", "8.8.8.8:80")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer conn.Close()
+
+	locaAddr := conn.LocalAddr().(*net.UDPAddr)
+	return locaAddr.IP
 }
