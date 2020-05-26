@@ -2,6 +2,7 @@ package base
 
 import (
 	"github.com/gorilla/mux"
+	"net/http"
 )
 
 func New(serverAddress string, handler BaseHandler) (s Service) {
@@ -20,5 +21,12 @@ func (s *Service) New() (router *mux.Router) {
 	r.HandleFunc("/cancel", s.handler.Cancel)
 	r.HandleFunc("/label", s.handler.Label)
 	r.HandleFunc("/configuration", s.handler.Configuration)
+	r.HandleFunc("/alive", alive)
+
 	return r
+}
+
+func alive(w http.ResponseWriter, r *http.Request) {
+	w.WriteHeader(http.StatusOK)
+	_ := r.Close
 }
