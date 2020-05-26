@@ -28,5 +28,5 @@ func (s *Service) New() (router *mux.Router) {
 
 func alive(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
-	_ := r.Close
+	_ = r.Close
 }
