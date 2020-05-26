@@ -23,6 +23,18 @@ func (b *BookingRequest) ValueAsDecimal() *decimal.Decimal {
 	return &value
 }
 
+func (b *BookingRequest) TotalWeight() *float64 {
+	totalWeight := float64(0)
+	for _, v := range b.Pieces {
+		totalWeight += v.Weight
+	}
+	return &totalWeight
+}
+
+func (b *BookingRequest) IsCollection() bool {
+	return b.CollectionAddress != Address{}
+}
+
 func (b *BookingRequest) IsEmaCustomer() bool {
 	return b.OwnerId == 992
 }
