@@ -23,12 +23,12 @@ func (b *BookingRequest) ValueAsDecimal() *decimal.Decimal {
 	return &value
 }
 
-func (b *BookingRequest) TotalWeight() *float64 {
-	totalWeight := float64(0)
+func (b *BookingRequest) TotalWeight() float32 {
+	totalWeight := float32(0)
 	for _, v := range b.Pieces {
-		totalWeight += v.Weight
+		totalWeight += float32(v.Weight)
 	}
-	return &totalWeight
+	return totalWeight
 }
 
 func (b *BookingRequest) IsCollection() bool {
