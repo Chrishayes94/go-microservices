@@ -8,7 +8,7 @@ import (
 func (s *Registration) UpdateTTL(check func() (bool, error)) {
 	ticker := time.NewTicker(s.TTL / 2)
 	for range ticker.C {
-		s.update(c)
+		s.update(check)
 	}
 }
 
