@@ -33,6 +33,7 @@ func New(integration string, ttl time.Duration, port int) (*Registration, error)
 		Check: &consul.AgentServiceCheck{
 			HTTP: getIp().String() + ":8080/alive",
 			TTL: s.TTL.String(),
+			Interval: "10s",
 		},
 	}
 	if err := s.ConsulAgent.ServiceRegister(serviceDef); err != nil {
