@@ -17,7 +17,7 @@ func New(integration string, ttl time.Duration, port int) (*Registration, error)
 		TTL: ttl,
 	}
 	config := consul.DefaultConfig()
-	config.Address = "172.17.0.4:8500"
+	config.Address = "172.17.0.3:8500"
 
 	c, err := consul.NewClient(config)
 	if err != nil {
